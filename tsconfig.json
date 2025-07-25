@@ -22,6 +22,6 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "components/ui/input-otp.jsx", "app/layout.jsx", "stackbit.config.js", "components/Navbar.jsx", "next.config.js", "lib/sendEmail.ts", "lib/authOptions.js", "app/api/auth/[...nextauth]/route.js", "app/api/assignments/[assignmentId]/submit/route.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "components/ui/input-otp.jsx", "app/layout.jsx", "stackbit.config.js", "components/Navbar.jsx", "next.config.js", "lib/sendEmail.ts", "lib/authOptions.js", "app/api/auth/[...nextauth]/route.js", "app/api/assignments/[assignmentId]/submit/route.js", "app/login/page.jsx", "app/signup/page.jsx"],
   "exclude": ["node_modules"]
 }

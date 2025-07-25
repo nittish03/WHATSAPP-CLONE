@@ -22,8 +22,10 @@ import {
 import Image from "next/image"
 import { toast } from "react-toastify"
 import NewChatModal from "@/components/NewChatModal"
+import { useRouter } from "next/navigation"
 
 export default function ChatPage() {
+  const router = useRouter();
   const { data: session } = useSession()
   const [chats, setChats] = useState([])
   const [selectedChat, setSelectedChat] = useState(null)
@@ -491,7 +493,10 @@ export default function ChatPage() {
             </div>
             
             <div className="space-y-2">
-              <button className="flex items-center space-x-3 w-full p-2 text-gray-700 hover:bg-gray-100 rounded-lg">
+              <button onClick={()=>{
+                router.push("/profile");
+                setShowProfileMenu(false);
+              }} className="flex items-center space-x-3 w-full p-2 text-gray-700 hover:bg-gray-100 rounded-lg">
                 <User className="h-5 w-5" />
                 <span>Profile</span>
               </button>

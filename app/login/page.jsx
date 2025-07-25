@@ -35,7 +35,7 @@ const LoginPage = () => {
 
   useEffect(() => {
     if (session) {
-      router.push("/chat");
+      router.push("/");
     }
   }, [session, router]);
 
@@ -68,7 +68,7 @@ const LoginPage = () => {
         toast.error("Invalid credentials");
       } else {
         toast.success("Signed in successfully");
-        router.push("/chat");
+        router.push("/");
       }
     } catch (error) {
       setError("Something went wrong. Please try again.");

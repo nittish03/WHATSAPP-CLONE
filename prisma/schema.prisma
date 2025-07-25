@@ -51,6 +51,7 @@ model User {
   accounts          Account[]
   sessions          Session[]
 
+
     createdChats     Chat[]              @relation("ChatCreator")
   chatParticipants ChatParticipant[]
   sentMessages     Message[]           @relation("SentMessages")

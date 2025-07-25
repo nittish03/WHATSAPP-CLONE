@@ -25,7 +25,7 @@ const SignUpPage = () => {
   
   useEffect(() => {
     if (session) {
-      router.push("/chat")
+      router.push("/")
     }
   }, [session, router])
   

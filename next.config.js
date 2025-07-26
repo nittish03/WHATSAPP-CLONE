@@ -5,7 +5,6 @@ const nextConfig = {
       's3-alpha-sig.figma.com',
       'skillicons.dev',
       'lh3.googleusercontent.com',
-      'drive.google.com'
     ],
   },
 };

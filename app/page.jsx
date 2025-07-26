@@ -94,7 +94,7 @@ export default function ChatPage() {
       return chat.name || 'Group Chat'
     }
     const otherParticipant = chat.participants.find(p => p.userId !== session?.user?.id)
-    return otherParticipant?.user?.name || 'Unknown User'
+    return (otherParticipant?.user?.name==session?.user?.name)?'You':otherParticipant?.user?.name || 'Unknown User'
   }
 
   const getChatAvatar = (chat) => {

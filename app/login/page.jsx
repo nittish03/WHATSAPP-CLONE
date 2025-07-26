@@ -25,7 +25,7 @@ const LoginPage = () => {
   const handleGoogleSignIn = () => {
     const loading = toast.loading("Signing in with Google...");
     try {
-      signIn("google", { callbackUrl: "/chat" });
+      signIn("google", { callbackUrl: "/" });
       toast.dismiss(loading);
     } catch (error) {
       toast.dismiss(loading);

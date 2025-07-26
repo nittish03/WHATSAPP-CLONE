@@ -41,7 +41,7 @@ const SignUpPage = () => {
   const handleClick = () => {
     const loading = toast.loading("Signing in with Google...");
     try {
-      signIn("google", { callbackUrl: "/chat" });
+      signIn("google", { callbackUrl: "/" });
       toast.dismiss(loading);
     } catch (error) {
       toast.dismiss(loading);
@@ -98,7 +98,7 @@ const SignUpPage = () => {
       toast.dismiss(loading);
       if (response) {
         toast.success("Account created successfully");
-        await signIn("credentials", { email, password, callbackUrl: "/chat", redirect: true });
+        await signIn("credentials", { email, password, callbackUrl: "/", redirect: true });
         router.push("/login");
       } else {
         toast.error("Failed to verify OTP");

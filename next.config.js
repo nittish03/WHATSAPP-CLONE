@@ -4,7 +4,8 @@ const nextConfig = {
     domains: [
       's3-alpha-sig.figma.com',
       'skillicons.dev',
-      'lh3.googleusercontent.com'
+      'lh3.googleusercontent.com',
+      'drive.google.com'
     ],
   },
 };

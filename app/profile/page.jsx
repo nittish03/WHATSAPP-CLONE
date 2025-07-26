@@ -231,60 +231,60 @@ export default function ProfilePage() {
           <div className="xl:col-span-1">
             <div className="bg-white rounded-2xl shadow-xl border border-green-100 p-4 sm:p-6">
               {/* Profile Image */}
-<div className="text-center mb-6">
-  <div className="relative inline-block">
-    <div className="w-24 h-24 sm:w-32 sm:h-32 rounded-full overflow-hidden bg-gray-100 border-4 border-green-200 mx-auto">
-      {session?.user?.image ? (
-        <Image
-          src={getImageSrc(session.user.image)}
-          alt="Profile"
-          width={128}
-          height={128}
-          className="w-full h-full object-cover object-center"
-          style={{
-            objectPosition: 'center center'
-          }}
-        />
-      ) : (
-        <div className="w-full h-full flex items-center justify-center bg-green-500">
-          <User className="h-12 w-12 sm:h-16 sm:w-16 text-white" />
-        </div>
-      )}
-    </div>
-    
-    {/* Upload Button */}
-    <button
-      onClick={() => fileInputRef.current?.click()}
-      disabled={imageUploading}
-      className="absolute bottom-0 right-0 bg-green-500 text-white p-2 rounded-full hover:bg-green-600 transition-colors shadow-lg border-4 border-white"
-    >
-      {imageUploading ? (
-        <div className="animate-spin rounded-full h-3 w-3 sm:h-4 sm:w-4 border-b-2 border-white"></div>
-      ) : (
-        <Camera className="h-3 w-3 sm:h-4 sm:w-4" />
-      )}
-    </button>
-    
-    <input
-      ref={fileInputRef}
-      type="file"
-      accept="image/*"
-      onChange={handleImageUpload}
-      className="hidden"
-    />
-  </div>
-  
-  <h2 className="text-lg sm:text-xl font-semibold text-gray-900 mt-4 truncate">
-    {session?.user?.name || profile.name}
-  </h2>
-  <p className="text-gray-600 text-sm sm:text-base truncate">
-    {session?.user?.email || profile.email}
-  </p>
-  <div className="flex items-center justify-center mt-2 text-xs sm:text-sm text-gray-500">
-    <Calendar className="h-3 w-3 sm:h-4 sm:w-4 mr-1" />
-    Joined {new Date(profile.createdAt).toLocaleDateString()}
-  </div>
-</div>
+              <div className="text-center mb-6">
+                <div className="relative inline-block">
+                  <div className="w-24 h-24 sm:w-32 sm:h-32 rounded-full overflow-hidden bg-gray-100 border-4 border-green-200 mx-auto">
+                    {session?.user?.image ? (
+                      <Image
+                        src={getImageSrc(session.user.image)}
+                        alt="Profile"
+                        width={128}
+                        height={128}
+                        className="w-full h-full object-cover object-center"
+                        style={{
+                          objectPosition: 'center center'
+                        }}
+                      />
+                    ) : (
+                      <div className="w-full h-full flex items-center justify-center bg-green-500">
+                        <User className="h-12 w-12 sm:h-16 sm:w-16 text-white" />
+                      </div>
+                    )}
+                  </div>
+                  
+                  {/* Upload Button */}
+                  <button
+                    onClick={() => fileInputRef.current?.click()}
+                    disabled={imageUploading}
+                    className="absolute bottom-0 right-0 bg-green-500 text-white p-2 rounded-full hover:bg-green-600 transition-colors shadow-lg border-4 border-white"
+                  >
+                    {imageUploading ? (
+                      <div className="animate-spin rounded-full h-3 w-3 sm:h-4 sm:w-4 border-b-2 border-white"></div>
+                    ) : (
+                      <Camera className="h-3 w-3 sm:h-4 sm:w-4" />
+                    )}
+                  </button>
+                  
+                  <input
+                    ref={fileInputRef}
+                    type="file"
+                    accept="image/*"
+                    onChange={handleImageUpload}
+                    className="hidden"
+                  />
+                </div>
+                
+                <h2 className="text-lg sm:text-xl font-semibold text-gray-900 mt-4 truncate">
+                  {session?.user?.name || profile.name}
+                </h2>
+                <p className="text-gray-600 text-sm sm:text-base truncate">
+                  {session?.user?.email || profile.email}
+                </p>
+                <div className="flex items-center justify-center mt-2 text-xs sm:text-sm text-gray-500">
+                  <Calendar className="h-3 w-3 sm:h-4 sm:w-4 mr-1" />
+                  Joined {new Date(profile.createdAt).toLocaleDateString()}
+                </div>
+              </div>
 
               {/* Quick Actions */}
               <div className="space-y-3">

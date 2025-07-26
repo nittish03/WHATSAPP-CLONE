@@ -1,24 +1,9 @@
 'use client'
+
 import { useState, useEffect } from "react"
 import { useSession, signOut } from "next-auth/react"
 import axios from "axios"
-import { 
-  MessageCircle, 
-  Users, 
-  Search, 
-  Plus, 
-  Send, 
-  UserPlus, 
-  MoreVertical,
-  User,
-  LogOut,
-  Settings,
-  Archive,
-  Bell,
-  Moon,
-  Palette,
-  X
-} from "lucide-react"
+import { MessageCircle, Users, Search, Plus, Send, UserPlus, MoreVertical, User, LogOut, Settings, Archive, Bell, Moon, Palette, X } from "lucide-react"
 import Image from "next/image"
 import { toast } from "react-toastify"
 import NewChatModal from "@/components/NewChatModal"
@@ -36,6 +21,12 @@ export default function ChatPage() {
   const [showNewChatModal, setShowNewChatModal] = useState(false)
   const [showProfileMenu, setShowProfileMenu] = useState(false)
   const [showOptionsMenu, setShowOptionsMenu] = useState(false)
+
+  // Helper function to get image through proxy
+  const getImageSrc = (imageUrl) => {
+    if (!imageUrl) return null
+    return `/api/image-proxy?url=${encodeURIComponent(imageUrl)}`
+  }
 
   useEffect(() => {
     loadChats()
@@ -169,7 +160,7 @@ export default function ChatPage() {
                 <div className="w-10 h-10 rounded-full overflow-hidden bg-gray-300 flex items-center justify-center">
                   {session?.user?.image ? (
                     <Image
-                      src={`/api/image-proxy?url=${encodeURIComponent(session.user.image)}`}
+                      src={getImageSrc(session.user.image)}
                       alt="Profile"
                       width={40}
                       height={40}
@@ -287,7 +278,7 @@ export default function ChatPage() {
                   <div className="w-12 h-12 rounded-full overflow-hidden bg-gray-300 flex items-center justify-center">
                     {getChatAvatar(chat) ? (
                       <Image
-                        src={getChatAvatar(chat)}
+                        src={getImageSrc(getChatAvatar(chat))}
                         alt="Avatar"
                         width={48}
                         height={48}
@@ -320,7 +311,6 @@ export default function ChatPage() {
                     <p className="text-sm text-gray-500 truncate">
                       {chat.lastMessage || 'No messages yet'}
                     </p>
-                    {/* Message count badge could go here */}
                   </div>
                 </div>
               </div>
@@ -354,7 +344,7 @@ export default function ChatPage() {
                 <div className="w-10 h-10 rounded-full overflow-hidden bg-gray-300 flex items-center justify-center">
                   {getChatAvatar(selectedChat) ? (
                     <Image
-                      src={getChatAvatar(selectedChat)}
+                      src={getImageSrc(getChatAvatar(selectedChat))}
                       alt="Avatar"
                       width={40}
                       height={40}
@@ -471,7 +461,7 @@ export default function ChatPage() {
               <div className="w-16 h-16 rounded-full overflow-hidden bg-gray-300">
                 {session?.user?.image ? (
                   <Image
-                    src={`/api/image-proxy?url=${encodeURIComponent(session.user.image)}`}
+                    src={getImageSrc(session.user.image)}
                     alt="Profile"
                     width={64}
                     height={64}
@@ -493,10 +483,13 @@ export default function ChatPage() {
             </div>
             
             <div className="space-y-2">
-              <button onClick={()=>{
-                router.push("/profile");
-                setShowProfileMenu(false);
-              }} className="flex items-center space-x-3 w-full p-2 text-gray-700 hover:bg-gray-100 rounded-lg">
+              <button 
+                onClick={() => {
+                  router.push("/profile");
+                  setShowProfileMenu(false);
+                }}
+                className="flex items-center space-x-3 w-full p-2 text-gray-700 hover:bg-gray-100 rounded-lg"
+              >
                 <User className="h-5 w-5" />
                 <span>Profile</span>
               </button>

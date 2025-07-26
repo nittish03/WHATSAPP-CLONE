@@ -363,7 +363,7 @@ export default function ChatPage() {
                       {selectedChat.participants.length} participants
                     </p>
                   ) : (
-                    <p className="text-sm text-gray-500">Online</p>
+                    <p className="text-sm text-gray-500"></p>
                   )}
                 </div>
                 <div className="flex items-center space-x-2">

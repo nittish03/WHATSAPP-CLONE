@@ -52,23 +52,10 @@ export async function PUT(request) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
     }
 
-    const { name, image, oldFileId } = await request.json()
+    const { name, image } = await request.json()
 
     if (!name || name.trim().length < 2) {
       return NextResponse.json({ error: 'Name must be at least 2 characters long' }, { status: 400 })
-    }
-
-    // ✅ Delete old Google Drive file directly (no fetch call needed)
-    if (oldFileId && image && oldFileId !== image) {
-      try {
-        await drive.files.delete({ fileId: oldFileId }).catch((err) => {
-          console.error('Google Drive delete error:', err)
-          // Don't fail the entire operation if delete fails
-        })
-      } catch (err) {
-        console.error('Failed to delete old image:', err)
-        // Continue anyway - don't fail the profile update
-      }
     }
 
     const updatedUser = await prismaDB.user.update({

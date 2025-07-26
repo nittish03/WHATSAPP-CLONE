@@ -88,13 +88,22 @@ export default function ProfilePage() {
       // Update profile state
       setProfile(prev => ({ ...prev, image: newImageUrl }))
 
-      // Immediately update session and database
+      // Delete old image if it exists
+      if (originalImage?.includes('drive.google.com')) {
+        const oldFileId = originalImage.split('id=')[1]
+        try {
+          await axios.delete('/api/upload', { data: { fileId: oldFileId } })
+        } catch (deleteError) {
+          console.error('Failed to delete old image:', deleteError)
+          // Optionally notify user, but proceed with updating the profile
+          toast.warn('Could not remove the old profile picture.')
+        }
+      }
+
+      // Update profile in the database
       const profileResponse = await axios.put('/api/profile', {
         name: profile.name,
         image: newImageUrl,
-        oldFileId: originalImage?.includes('drive.google.com') 
-          ? originalImage.split('id=')[1] 
-          : null
       })
 
       // Update session immediately
@@ -130,9 +139,6 @@ export default function ProfilePage() {
       const response = await axios.put('/api/profile', {
         name: profile.name,
         image: profile.image,
-        oldFileId: originalImage?.includes('drive.google.com') 
-          ? originalImage.split('id=')[1] 
-          : null
       })
 
       setProfile(response.data)
